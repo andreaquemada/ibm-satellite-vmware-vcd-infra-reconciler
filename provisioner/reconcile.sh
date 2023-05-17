@@ -4,7 +4,7 @@
 set +x
 source config.env
 set -x
-export LOCATION_ID=vmware-location-demo-3
+export LOCATION_ID=satellite-location-test
 core_machinegroup_reconcile() {
 	export INSTANCE_DATA=/tmp/instancedata.txt
 	rm -f "$INSTANCE_DATA"
