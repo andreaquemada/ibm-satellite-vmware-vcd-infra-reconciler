@@ -9,6 +9,7 @@ for($i = 0; $i -le 10; $i++)
 }
 for($i = 0; $i -le 10; $i++)
 {
+	# Stop-VApp  <VApp[]>[-Force][-RunAsync][-Server  <VIServer[]>][CommonParameters]
     Stop-CIVApp -VApp "$Env:VAPP_NAME" -Confirm:$false
     if ( $?)
     {
@@ -18,6 +19,7 @@ for($i = 0; $i -le 10; $i++)
 }
 for($i = 0; $i -le 10; $i++)
 {
+	# Remove-VApp  <VApp[]>[-DeletePermanently][-RunAsync][-Server  <VIServer[]>][CommonParameters]
     Remove-CIVApp -VApp "$Env:VAPP_NAME" -Confirm:$false
     if ( $?)
     {

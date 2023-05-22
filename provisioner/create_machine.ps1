@@ -14,6 +14,7 @@ for($i = 0; $i -le 10; $i++)
 {
  $Error.Clear()
  # New-VApp https://developer.vmware.com/docs/powercli/latest/vmware.vimautomation.core/commands/new-vapp/#new
+# New-VApp -Name "$Env:VAPP_NAME" -CpuLimitMhz 4000 -CpuReservationMhz 1000 -Location MyVMHost1
  New-CIVApp -Name "$Env:VAPP_NAME" -OrgVdc "$Env:VCD_ORG_VDC" -VAppTemplate "rhcos OpenShift 4.10.16" -StorageLease $null -RuntimeLease $null
  if ( $?)
  {
@@ -47,6 +48,7 @@ Remove-CIVAppNetwork -VappNetwork "VM Network" -Confirm:$false
 for($i = 0; $i -le 10; $i++)
 {
  # Get-VApp
+# Get-VApp [-Location  <VIContainer[]>][-Name  <String[]>][-NoRecursion][-Server  <VIServer[]>][-Tag  <Tag[]>][CommonParameters]
  $vm = Get-CIVApp -OrgVdc "$Env:VCD_ORG_VDC" -Name "$Env:VAPP_NAME" | Get-CIVM
  if ( $?)
  {

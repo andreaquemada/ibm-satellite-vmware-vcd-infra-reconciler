@@ -1,4 +1,5 @@
 Connect-CIServer -Server "$Env:VCD_SERVER" -Org "$Env:VCD_ORG" -User "$Env:VCD_USER" -Pass "$Env:VCD_PASSWORD"
+# Get-VApp [-Location  <VIContainer[]>][-Name  <String[]>][-NoRecursion][-Server  <VIServer[]>][-Tag  <Tag[]>][CommonParameters]
 $a = Get-CIVApp -OrgVdc "$Env:VCD_ORG_VDC"
 if (-not $?)
 {
