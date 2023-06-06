@@ -1,6 +1,6 @@
 for($i = 0; $i -le 10; $i++)
 {
-    Connect-CIServer -Server "$Env:VCD_SERVER" -Org "$Env:VCD_ORG" -User "$Env:VCD_USER" -Pass "$Env:VCD_PASSWORD"
+    Connect-VIServer -Server $Env:VSP_SERVER -Protocol https -User "$Env:VSP_USER" -Password "$Env:VSP_PASSWORD"
     if ( $?)
     {
         break
@@ -9,8 +9,7 @@ for($i = 0; $i -le 10; $i++)
 }
 for($i = 0; $i -le 10; $i++)
 {
-	# Stop-VApp  <VApp[]>[-Force][-RunAsync][-Server  <VIServer[]>][CommonParameters]
-    Stop-CIVApp -VApp "$Env:VAPP_NAME" -Confirm:$false
+	Remove-VM -VM "$ENV:RP_NAME" -Confirm:$false
     if ( $?)
     {
         break
@@ -19,8 +18,7 @@ for($i = 0; $i -le 10; $i++)
 }
 for($i = 0; $i -le 10; $i++)
 {
-	# Remove-VApp  <VApp[]>[-DeletePermanently][-RunAsync][-Server  <VIServer[]>][CommonParameters]
-    Remove-CIVApp -VApp "$Env:VAPP_NAME" -Confirm:$false
+	Remove-ResourcePool -ResourcePool "$ENV:RP_NAME" -Confirm:$false
     if ( $?)
     {
         break

@@ -1,12 +1,16 @@
-Connect-CIServer -Server "$Env:VCD_SERVER" -Org "$Env:VCD_ORG" -User "$Env:VCD_USER" -Pass "$Env:VCD_PASSWORD"
-# Get-VApp [-Location  <VIContainer[]>][-Name  <String[]>][-NoRecursion][-Server  <VIServer[]>][-Tag  <Tag[]>][CommonParameters]
-$a = Get-CIVApp -OrgVdc "$Env:VCD_ORG_VDC"
+# vSphere command index: https://developer.vmware.com/docs/powercli/latest/products/vmwarevsphereandvsan/commands-index/
+for($i = 0; $i -le 10; $i++)
+{
+ Connect-VIServer -Server $Env:VSP_SERVER -Protocol https -User "$Env:VSP_USER" -Password "$Env:VSP_PASSWORD"
+ if ( $?)
+ {
+  break
+ }
+ Start-Sleep -Seconds 60
+}
+$a = Get-VM -Name "$Env:RP_NAME"
 if (-not $?)
 {
     exit
 }
 Write-Output success >> "$Env:INSTANCE_DATA"
-for($i = 0; $i -le $a.Length-1; $i++)
-{
-    $a.GetValue($i).Name >> "$Env:INSTANCE_DATA"
-}
