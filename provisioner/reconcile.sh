@@ -78,7 +78,7 @@ while true; do
 		continue
 	fi
 	if ! grep "$LOCATION_ID" /tmp/location-lists.txt; then
-		ibmcloud sat location create --name "$LOCATION_ID" --coreos-enabled --managed-from wdc
+		ibmcloud sat location create --name "$LOCATION_ID" --managed-from fra
 	fi
 	if ! ibmcloud sat hosts --location $LOCATION_ID --output json >$HOSTS_DATA_FILE; then
 		continue
